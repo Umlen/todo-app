@@ -1,0 +1,173 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap');
+
+@mixin align-center() {
+    width: 40%;
+    margin: auto;    
+}
+
+@mixin flex-container() {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+$main-font: "Josefin Sans", "Arial", sans-serif;
+$bgcolor-light-theme: #FFFFFF;
+$main-font-color: #9495A5;
+$onfocus-font-color: #494C6B;
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    width: 100%;
+    font-size: 18px;
+}
+
+body {
+    background-color: $bgcolor-light-theme;
+    background-image: url(images/bg-desktop-light.jpg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    font-family: $main-font;
+    font-weight: 400;
+    color: $main-font-color;
+}
+
+h1 {
+    font-size: 2.25rem;
+    letter-spacing: .85rem;
+    font-weight: 700;
+    color: $bgcolor-light-theme;
+}
+
+.hide {
+    display: none;
+}
+
+#dark-theme-on, #light-theme-on {
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+header {
+    @include align-center();
+    @include flex-container();
+    margin-top: 70px;
+}
+
+main {
+    @include align-center();
+    margin-top: 40px;
+}
+
+footer {
+    @include align-center();
+    text-align: center;
+}
+
+.list-item {
+    width: 100%;
+    height: 3.65rem;
+    border-radius: 5px;
+    border-bottom: 1px solid #E3E4F1;
+    background-color: $bgcolor-light-theme;
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.task {
+    color: $onfocus-font-color;
+    padding-top: 24px;
+    display: inline-block;
+}
+
+.unchecked {
+    float: left;
+    width: 1.33rem;
+    height: 1.33rem;
+    margin: 20px 24px;
+    border-radius: 50%;
+    background-color: $bgcolor-light-theme;
+    border: 1px solid #E3E4F1;
+}
+
+.checked {
+    border: none;
+    background-image: linear-gradient(#55DDFF, #C058F3);
+}
+
+.icon-check {
+    display: block;
+    margin: auto;
+    padding-top: 8px;
+    width: 11px;
+    height: 9px;
+}
+
+.close-btn {
+    width: 18px;
+    height: 18px;
+    float: right;
+    margin: 24px 24px;
+}
+
+input {
+    width: 80%;
+    margin-top: 24px;
+    border: none;
+    font-family: inherit;
+    font-size: inherit;
+    letter-spacing: -.25px;
+    line-height: auto;
+    color: inherit;
+    &:focus {
+        outline: none;
+        color: #393A4B;
+    }
+}
+
+#todo-list {
+    width: 100%;
+    margin-top: 24px;
+    border-radius: 5px;
+    background-color: $bgcolor-light-theme;
+}
+
+.todo-list-menu {
+    @include flex-container();
+    width: 100%;
+    height: 3.55rem;
+    justify-content: space-around;
+    border-radius: 5px;
+    font-size: .8rem;
+    letter-spacing: -.19px;
+}
+
+.filters {
+    list-style: none;
+    & li {
+        display: inline;
+        font-weight: 700;
+        &:nth-child(2) {
+            padding: 0 1rem;
+        }
+        & label:hover {
+            cursor: pointer;
+            color: $onfocus-font-color;
+        }
+        & input:checked + label {
+            color: #3A7CFD;
+        }
+    }
+}
+
+#clear-completed:hover {
+    cursor: pointer;
+    color: $onfocus-font-color;
+}
