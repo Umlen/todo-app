@@ -180,7 +180,7 @@ main {
   width: 18px;
   height: 18px;
   float: right;
-  margin: 24px 24px;
+  margin: 1.3rem 1.3rem;
 }
 
 #new-task-wrapper {
@@ -273,5 +273,24 @@ footer a:hover {
 
   .dark-theme {
     background-image: url(images/bg-mobile-dark.jpg);
+  }
+
+  .todo-list-menu {
+    justify-content: space-between;
+  }
+  .todo-list-menu p:nth-child(1) {
+    margin-left: 1.3rem;
+  }
+  .todo-list-menu p:nth-child(2) {
+    margin-right: 1.3rem;
+  }
+
+  .close-btn {
+    transform: scale(0.7);
+    margin: 1.1rem 1.3rem;
+  }
+
+  .icon-check {
+    padding-top: 4px;
   }
 }/*# sourceMappingURL=style.css.map */
