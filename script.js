@@ -1,4 +1,10 @@
 window.onload = function() {
+    
+    /*FOR MOBILE*/
+    if (document.documentElement.clientWidth < 480) {
+        mobileResolution();
+    }
+    
     let newTask = document.getElementById('new-task');
     let todoList = document.getElementById('todo-list');
     let filters = {
@@ -143,4 +149,9 @@ window.onload = function() {
         document.getElementById('light-theme-on').classList.add('hide');
     }
 
+    function mobileResolution() { 
+            let filters = document.getElementById('filters');
+            let todoList = document.getElementById('todo-list');
+            todoList.after(filters);
+    }
 };

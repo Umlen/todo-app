@@ -44,8 +44,16 @@ html, body {
     background-color: $bgcolor-light-theme;
     background-image: url(images/bg-desktop-light.jpg);
     color: $font-color-light-theme;
+    .shadow {
+        box-shadow: 1px 1px 10px 0 #888;
+    }
     & #todo-list {
         background-color: $bgcolor-light-theme;
+        & .list-item {
+            & .unchecked:hover {
+                border-color: transparent;
+            }
+        }
     }
     & .list-item {
         border-bottom: 1px solid #E3E4F1;
@@ -59,9 +67,6 @@ html, body {
         & .unchecked {
             background-color: $bgcolor-light-theme;
             border-color: #E3E4F1;
-            &:hover {
-                border-color: transparent;
-            }
         }
         & .task {
             color: $onfocus-font-color-light-theme;
@@ -74,6 +79,11 @@ html, body {
     & .filters-label:hover {
         color: $onfocus-font-color-light-theme;
     }
+    footer {
+        & a {
+            color: $font-color-dark-theme;
+        }
+    }
 }
 
 .dark-theme {
@@ -81,8 +91,16 @@ html, body {
     background-color: $bgcolor-dark-theme;
     background-image: url(images/bg-desktop-dark.jpg);
     color: $font-color-dark-theme;
+    .shadow {
+        box-shadow: 1px 1px 10px 0 #000;
+    }
     & #todo-list {
         background-color: $bgcolor-dark-theme;
+        & .list-item {
+            & .unchecked:hover {
+                border-color: transparent;
+            }
+        }
     }
     & .list-item {
         border-bottom: 1px solid #393A4B;
@@ -96,9 +114,6 @@ html, body {
         & .unchecked {
             background-color: $bgcolor-dark-theme;
             border-color: #393A4B;
-            &:hover {
-                border-color: transparent;
-            }
         }
         & .task {
             color: $onfocus-font-color-dark-theme;
@@ -110,6 +125,11 @@ html, body {
     }
     & .filters-label:hover {
         color: $onfocus-font-color-dark-theme;
+    }
+    footer {
+        & a {
+            color: $font-color-light-theme;
+        }
     }
 }
 
@@ -131,7 +151,7 @@ h1 {
 header {
     @include align-center();
     @include flex-container();
-    margin-top: 70px;
+    margin-top: 4rem;
 }
 
 main {
@@ -139,30 +159,24 @@ main {
     margin-top: 40px;
 }
 
-footer {
-    @include align-center();
-    text-align: center;
-}
-
 .list-item {
     width: 100%;
     height: 3.65rem;
-    border-radius: 5px;
     &:hover {
         cursor: pointer;
     }
 }
 
 .task {
-    padding-top: 24px;
+    padding-top: 1.3rem;
     display: inline-block;
 }
 
 .unchecked {
     float: left;
-    width: 1.33rem;
-    height: 1.33rem;
-    margin: 20px 24px;
+    width: 1.3rem;
+    height: 1.3rem;
+    margin: 1.1rem 1.3rem;
     border-radius: 50%;
     border: 1px solid transparent;
 }
@@ -196,9 +210,14 @@ footer {
     margin: 24px 24px;
 }
 
+#new-task-wrapper {
+    border-radius: 5px;
+    border: none;
+}
+
 #new-task {
-    width: 80%;
-    margin-top: 24px;
+    max-width: 80%;
+    margin-top: 1.3rem;
     border: none;
     font-family: inherit;
     font-size: inherit;
@@ -213,6 +232,11 @@ footer {
     width: 100%;
     margin-top: 24px;
     border-radius: 5px;
+    & .list-item {
+        &:nth-child(1) {
+            border-radius: 5px 5px 0 0;
+        }
+    }
 }
 
 .todo-list-menu {
@@ -220,12 +244,11 @@ footer {
     width: 100%;
     height: 3.55rem;
     justify-content: space-around;
-    border-radius: 5px;
     font-size: .8rem;
     letter-spacing: -.19px;
 }
 
-.filters {
+#filters {
     list-style: none;
     & li {
         display: inline;
@@ -241,4 +264,41 @@ footer {
 
 .filters-label:hover {
     cursor: pointer;
+}
+
+#descr {
+    margin-top: 50px;
+    text-align: center;
+    font-size: .8rem;
+}
+
+footer {
+    @include align-center();
+    margin-top: 1rem;
+    font-size: .5rem;
+    text-align: center;
+    & a {
+        &:hover {
+            color: #3A7CFD;
+            text-decoration: none;
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    html, body {
+        font-size: 12px;
+    }
+    @mixin align-center() {
+        width: 90%;
+    }
+    main, header, footer {
+        @include align-center();
+    }
+    .light-theme {
+        background-image: url(images/bg-mobile-light.jpg);
+    }
+    .dark-theme {
+        background-image: url(images/bg-mobile-dark.jpg);
+    }
 }

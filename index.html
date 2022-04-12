@@ -28,14 +28,14 @@
   </header>
 
   <main>
-    <div class = "list-item">
+    <div class = "list-item shadow" id = "new-task-wrapper">
       <div class = "unchecked"></div>
       <input type = "text" value = "Create a new todo…" id = "new-task">
     </div>
-    <div id = "todo-list">
+    <div id = "todo-list" class = "shadow">
       <div class = "todo-list-menu">
         <p id = "items-count">items left</p>
-        <ul class = "filters">
+        <ul id = "filters">
           <li>
             <input type = "radio" name = "filters" value = "all" id = "all-radio" class = "hide" checked>
             <label for = "all-radio" id = "all" class = "filters-label">All</label>
@@ -52,12 +52,12 @@
         <p id = "clear-completed" class = "filters-label">Clear Completed</p>
       </div>
     </div>
-    <p>Drag and drop to reorder list</p>
+    <p id = "descr">Drag and drop to reorder list</p>
   </main>
 
   <footer>
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
+    Coded by <a href="https://github.com/Umlen" target="_blank">Viktor P.</a>.
   </footer>
 </body>
 </html>
