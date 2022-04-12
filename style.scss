@@ -12,22 +12,10 @@
     align-items: center;
 }
 
-@mixin for-body() {
-    background-size: contain;
-    background-repeat: no-repeat;
-    font-family: $main-font;
-    font-weight: 400;
-}
-
 $main-font: "Josefin Sans", "Arial", sans-serif;
-
 $bgcolor-light-theme: #FFFFFF;
-$font-color-light-theme: #9495A5;
-$onfocus-font-color-light-theme: #494C6B;
-
-$bgcolor-dark-theme: #171823;
-$font-color-dark-theme: #5B5E7E;
-$onfocus-font-color-dark-theme: #C8CBE7;
+$main-font-color: #9495A5;
+$onfocus-font-color: #494C6B;
 
 * {
     margin: 0;
@@ -39,82 +27,14 @@ html, body {
     font-size: 18px;
 }
 
-.light-theme {
-    @include for-body();
+body {
     background-color: $bgcolor-light-theme;
     background-image: url(images/bg-desktop-light.jpg);
-    color: $font-color-light-theme;
-    & #todo-list {
-        background-color: $bgcolor-light-theme;
-    }
-    & .list-item {
-        border-bottom: 1px solid #E3E4F1;
-        background-color: $bgcolor-light-theme;
-        & #new-task {
-            background-color: $bgcolor-light-theme;
-            &:focus {
-                color: #393A4B;
-            }
-        }
-        & .unchecked {
-            background-color: $bgcolor-light-theme;
-            border-color: #E3E4F1;
-            &:hover {
-                border-color: transparent;
-            }
-        }
-        & .task {
-            color: $onfocus-font-color-light-theme;
-        }
-        & .task-complete {
-            color: #D1D2DA;
-            text-decoration: line-through;
-        }
-    }
-    & .filters-label:hover {
-        color: $onfocus-font-color-light-theme;
-    }
-}
-
-.dark-theme {
-    @include for-body();
-    background-color: $bgcolor-dark-theme;
-    background-image: url(images/bg-desktop-dark.jpg);
-    color: $font-color-dark-theme;
-    & #todo-list {
-        background-color: $bgcolor-dark-theme;
-    }
-    & .list-item {
-        border-bottom: 1px solid #393A4B;
-        background-color: $bgcolor-dark-theme;
-        & #new-task {
-            background-color: $bgcolor-dark-theme;
-            &:focus {
-                color: #C8CBE7;
-            }
-        }
-        & .unchecked {
-            background-color: $bgcolor-dark-theme;
-            border-color: #393A4B;
-            &:hover {
-                border-color: transparent;
-            }
-        }
-        & .task {
-            color: $onfocus-font-color-dark-theme;
-        }
-        & .task-complete {
-            color: #4D5067;
-            text-decoration: line-through;
-        }
-    }
-    & .filters-label:hover {
-        color: $onfocus-font-color-dark-theme;
-    }
-}
-
-#theme-change-btn:hover {
-    cursor: pointer;
+    background-size: contain;
+    background-repeat: no-repeat;
+    font-family: $main-font;
+    font-weight: 400;
+    color: $main-font-color;
 }
 
 h1 {
@@ -126,6 +46,12 @@ h1 {
 
 .hide {
     display: none;
+}
+
+#dark-theme-on, #light-theme-on {
+    &:hover {
+        cursor: pointer;
+    }
 }
 
 header {
@@ -148,12 +74,15 @@ footer {
     width: 100%;
     height: 3.65rem;
     border-radius: 5px;
+    border-bottom: 1px solid #E3E4F1;
+    background-color: $bgcolor-light-theme;
     &:hover {
         cursor: pointer;
     }
 }
 
 .task {
+    color: $onfocus-font-color;
     padding-top: 24px;
     display: inline-block;
 }
@@ -164,16 +93,8 @@ footer {
     height: 1.33rem;
     margin: 20px 24px;
     border-radius: 50%;
-    border: 1px solid transparent;
-}
-
-.unchecked-hover {
-    border-radius: 50%;  
-    background: linear-gradient(#55DDFF, #C058F3) border-box; 
-    mask: 
-        linear-gradient(#fff 0 0) content-box, 
-        linear-gradient(#fff 0 0);
-    mask-composite: exclude;
+    background-color: $bgcolor-light-theme;
+    border: 1px solid #E3E4F1;
 }
 
 .checked {
@@ -196,16 +117,18 @@ footer {
     margin: 24px 24px;
 }
 
-#new-task {
+input {
     width: 80%;
     margin-top: 24px;
     border: none;
     font-family: inherit;
     font-size: inherit;
     letter-spacing: -.25px;
+    line-height: auto;
     color: inherit;
     &:focus {
         outline: none;
+        color: #393A4B;
     }
 }
 
@@ -213,6 +136,7 @@ footer {
     width: 100%;
     margin-top: 24px;
     border-radius: 5px;
+    background-color: $bgcolor-light-theme;
 }
 
 .todo-list-menu {
@@ -233,12 +157,17 @@ footer {
         &:nth-child(2) {
             padding: 0 1rem;
         }
-        & input:checked + .filters-label {
+        & label:hover {
+            cursor: pointer;
+            color: $onfocus-font-color;
+        }
+        & input:checked + label {
             color: #3A7CFD;
         }
     }
 }
 
-.filters-label:hover {
+#clear-completed:hover {
     cursor: pointer;
+    color: $onfocus-font-color;
 }
