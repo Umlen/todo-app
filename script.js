@@ -7,6 +7,8 @@ window.onload = function() {
         completed: document.getElementById('completed'),
     };
     let clearCompletedBtn = document.getElementById('clear-completed');
+    let themeChangeCheck = document.getElementById('theme-change-checkbox');
+
     let totalTasksCount = 0;
     tasksCount(totalTasksCount);
 
@@ -32,8 +34,19 @@ window.onload = function() {
             todoItem.prepend(checkBtn);
             todoItem.append(taskText);
             taskText.after(closeBtn);
+
             totalTasksCount++;
             tasksCount(totalTasksCount);
+
+            checkBtn.addEventListener('mouseenter', function(event) {
+                if (event.target.classList.contains('checked')) return;
+                event.target.classList.add('unchecked-hover');
+            });
+            checkBtn.addEventListener('mouseleave', function(event) {
+                event.target.classList.remove('unchecked-hover');
+            });
+
+            closeBtn.addEventListener('click', deleteOneTask.bind(closeBtn))
             todoItem.addEventListener('click', taskComplete.bind(todoItem, taskText, checkBtn));
             todoItem.onmouseenter = function(event) {
                 event.target.querySelector('svg').classList.remove('hide');
@@ -41,25 +54,27 @@ window.onload = function() {
             todoItem.onmouseleave = function(event) {
                 event.target.querySelector('svg').classList.add('hide');
             }
-
         }
     }
 
     function taskComplete(text, button) {
-        this.dataset.taskStatus = 'complete';
-        button.classList.add('checked');
-        button.innerHTML = '<svg class = "icon-check"><path fill="none" stroke="#FFF" stroke-width="2" d="M1 4.304L3.696 7l6-6"/></svg>';
-        text.style.color = '#D1D2DA';
-        text.style.textDecoration = 'line-through';
-        if (totalTasksCount > 0) {
+        if (totalTasksCount > 0 && this.dataset.taskStatus != 'complete') {
             totalTasksCount--;
             tasksCount(totalTasksCount);
         }
+        this.dataset.taskStatus = 'complete';
+        button.classList.add('checked');
+        button.innerHTML = '<svg class = "icon-check"><path fill="none" stroke="#FFF" stroke-width="2" d="M1 4.304L3.696 7l6-6"/></svg>';
+        text.classList.add('task-complete');
     }
 
     function tasksCount(count) {
         let itemsCount = document.getElementById('items-count');
         itemsCount.textContent = `${count} items left`;
+    }
+
+    function deleteOneTask() {
+        this.closest('.list-item').remove();
     }
 
     /*FILTERS*/
@@ -105,5 +120,27 @@ window.onload = function() {
             }
         }
     };
+
+    /*THEME CHANGE*/
+
+    themeChangeCheck.onchange = function() {
+        if (themeChangeCheck.checked) darkTheme();
+        else lightTheme();
+    };
+
+    function darkTheme() {
+        document.body.classList.remove('light-theme');
+        document.body.classList.add('dark-theme');
+        document.getElementById('dark-theme-on').classList.add('hide');
+        document.getElementById('light-theme-on').classList.remove('hide');
+
+    }
+
+    function lightTheme() {
+        document.body.classList.add('light-theme');
+        document.body.classList.remove('dark-theme');
+        document.getElementById('dark-theme-on').classList.remove('hide');
+        document.getElementById('light-theme-on').classList.add('hide');
+    }
 
 };
