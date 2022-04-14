@@ -285,6 +285,14 @@ footer {
     }
 }
 
+.filters-mobile {
+    @include flex-container();
+    justify-content: space-around;
+    border-radius: 5px;
+    border-bottom: none !important; 
+    margin-top: 16px;
+}
+
 @media (max-width: 480px) {
     html, body {
         font-size: 12px;

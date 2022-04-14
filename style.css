@@ -258,6 +258,17 @@ footer a:hover {
   text-decoration: none;
 }
 
+.filters-mobile {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  justify-content: space-around;
+  border-radius: 5px;
+  border-bottom: none !important;
+  margin-top: 16px;
+}
+
 @media (max-width: 480px) {
   html, body {
     font-size: 12px;
