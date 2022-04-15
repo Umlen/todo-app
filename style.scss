@@ -293,6 +293,10 @@ footer {
     margin-top: 16px;
 }
 
+.selected-drag {
+    opacity: .6;
+}
+
 @media (max-width: 480px) {
     html, body {
         font-size: 12px;

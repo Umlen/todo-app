@@ -7,6 +7,7 @@ window.onload = function() {
     
     let newTask = document.getElementById('new-task');
     let todoList = document.getElementById('todo-list');
+    todoList.addEventListener('mousedown', dragDrop());
     let filters = {
         all: document.getElementById('all'),
         active: document.getElementById('active'),
@@ -31,6 +32,7 @@ window.onload = function() {
             let closeBtn = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
             todoItem.classList.add('list-item');
             todoItem.setAttribute('data-task-status', 'active');
+            todoItem.draggable = true;
             checkBtn.classList.add('unchecked');
             taskText.classList.add('task');
             closeBtn.classList.add('close-btn', 'hide');
@@ -139,7 +141,6 @@ window.onload = function() {
         document.body.classList.add('dark-theme');
         document.getElementById('dark-theme-on').classList.add('hide');
         document.getElementById('light-theme-on').classList.remove('hide');
-
     }
 
     function lightTheme() {
@@ -154,5 +155,28 @@ window.onload = function() {
             let todoList = document.getElementById('todo-list');
             filters.classList.add('list-item', 'shadow', 'filters-mobile');
             todoList.after(filters);
+    }
+
+    /*DRAG N DROP*/
+
+    function dragDrop() {
+        todoList.addEventListener('dragstart', (event) => {
+                event.target.classList.add('selected-drag');
+            });
+        todoList.addEventListener('dragend', (event) => {
+                event.target.classList.remove('selected-drag');
+            });
+        todoList.addEventListener('dragover', (event) => {
+            event.preventDefault();
+            let activeItem = todoList.querySelector('.selected-drag');
+            let currentItem = event.target;
+            let isMoveable = activeItem !== currentItem && currentItem.classList.contains('list-item');
+            if (!isMoveable) 
+                return;
+            let nextItem = (currentItem === activeItem.nextElementSibling) ? 
+                currentItem.nextElementSibling :
+                currentItem;
+            todoList.insertBefore(activeItem, nextItem);
+        });
     }
 };
