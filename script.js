@@ -22,6 +22,9 @@ window.onload = function() {
     newTask.onfocus = function() {
         if (newTask.value == 'Create a new todo…') newTask.value = '';
     };
+    newTask.onblur = function() {
+        newTask.value = 'Create a new todo…';
+    };
     newTask.addEventListener('keydown', newTaskCreate);
 
     function newTaskCreate(event) {
@@ -43,6 +46,8 @@ window.onload = function() {
             todoItem.append(taskText);
             taskText.after(closeBtn);
 
+            newTask.value = '';
+
             totalTasksCount++;
             tasksCount(totalTasksCount);
 
@@ -55,6 +60,7 @@ window.onload = function() {
             });
 
             closeBtn.addEventListener('click', deleteOneTask.bind(closeBtn))
+
             todoItem.addEventListener('click', taskComplete.bind(todoItem, taskText, checkBtn));
             todoItem.onmouseenter = function(event) {
                 event.target.querySelector('svg').classList.remove('hide');
